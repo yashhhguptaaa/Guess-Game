@@ -12,7 +12,7 @@ export const getrandomword = () => async (dispatch,getdata) => {
 
         const currentWord = getdata().getwordReducer.user;
         localStorage.setItem('currentWord',JSON.stringify(currentWord));
-        window.location.href='/game'
+        // window.location.href='/game'
 
     } catch (error) {
         
