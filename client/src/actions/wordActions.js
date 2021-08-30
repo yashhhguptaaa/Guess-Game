@@ -11,7 +11,7 @@ export const getrandomword = () => async (dispatch,getdata) => {
         dispatch({type : 'GET_WORD_SUCCESS',payload:response.data})
 
         const currentWord = getdata().getwordReducer.user;
-        localStorage.setItem('currentUser',JSON.stringify(currentWord));
+        localStorage.setItem('currentWord',JSON.stringify(currentWord));
         window.location.href='/game'
 
     } catch (error) {
