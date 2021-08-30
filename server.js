@@ -1,12 +1,13 @@
 const express = require("express");
 const db= require('./db');
+const wordRoute = require('./routes/wordRoute');
 
 // const path = require('path')
 
 const app = express();
 app.use(express.json());
 
-// app.use('/api/pizzas',pizzaRoutes);
+app.use('/api/words',wordRoute);
 // app.use('/api/users',userRoutes);
 // app.use('/api/orders',orderRoutes);
 
