@@ -10,7 +10,8 @@ export const getrandomword = () => async (dispatch,getdata) => {
         console.log(response);
         dispatch({type : 'GET_WORD_SUCCESS',payload:response.data})
 
-        const currentWord = getdata().getwordReducer.user;
+        const currentWord = getdata().getwordReducer.currentWord;
+        console.log(currentWord);
         localStorage.setItem('currentWord',JSON.stringify(currentWord));
         window.location.href='/games'
 
