@@ -11,7 +11,7 @@ const finalReducer = combineReducers({
     getwordReducer: getwordReducer
 });
 
-const currentWord = localStorage.getItem('currentWord') ? JSON.parse(localStorage.getItem('currentWord')) : null;
+const currentWord = localStorage.getItem('currentWord') ? JSON.parse(localStorage.getItem('currentWord')) : [];
 
 const initialState = {
     // cartReducer: {
