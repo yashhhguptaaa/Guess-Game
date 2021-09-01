@@ -1,18 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState , useContext , useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Text, Image, Input, Box, Flex, Spacer, Select, Button, chakra } from "@chakra-ui/react";
 import { FramerTreeLayoutContext } from 'framer-motion';
+import { GameContext } from '../GameContext';
 
-export default function Gamescreen() {
+export default function Gamescreen({name}) {
 
     const wordstate = useSelector(state => state.getwordReducer)
     const { currentWord } = wordstate;
 
+    // const { clues , setClues} = useContext(GameContext)
+    // console.log("Clues",clues)
+
+    const clues = JSON.parse(localStorage.getItem("currentClues"))
+    console.log("Clues", clues)
+    
+
     const [guessword, setuessword] = useState('')
     const [check , setCheck] = useState('')
 
+    const checkword = JSON.parse(localStorage.getItem("GuessWord"));
+    const guess_name = JSON.parse(localStorage.getItem('guess_name'))
+
+
+
+    useEffect(() => {
+        // window.location.reload();
+
+    }, [])
+
     function nowCheck(){
-        if(guessword.toLowerCase() == currentWord[0].word){
+        if(guessword.toLowerCase() == checkword[0].word){
             setCheck('Congrats !! You guess the word right')
         }
         else{
@@ -21,25 +39,26 @@ export default function Gamescreen() {
     }
     return (
         <div>
+                        <chakra.h2 fontSize="28px" mr="120px" >Hello {guess_name}</chakra.h2>
+
             <Box bgGradient="linear(to-t, gray.200, gray.500)" boxShadow="dark-lg" p="5" maxW="800px" borderWidth="5px" alignContent="center" m="auto" mt="40px" mb="40px">
                 <chakra.h1 fontSize="38px" mr="30px" fontWeight="bold">Your Hints</chakra.h1>
 
 
                 <Flex ml="160px" mt="20px">
-                    {currentWord && currentWord[0].hints.map((guess) => {
-                        return <div>
-                            <Image
+                { clues && clues.map((clue) =>{
+                    return <Container ml="-60px">
+                        <Image
                                 borderRadius="full"
                                 boxSize="100px"
-                                src={`${guess.image}`}
+                                src={`${clue.image}`}
                                 m="auto"
-                                mb="30px"
-                                mr="60px"
+                                mb="1px"
+                                mr="150px"
                             />
-                            <chakra.h1 fontSize="28px" mr="30px" fontWeight="bold">{guess.hint}</chakra.h1>
-                        </div>
-
-                    })}
+                        <chakra.h2 fontSize="28px" mr="120px" >{clue.word}</chakra.h2>
+                    </Container>
+                })}
                 </Flex>
 
                 <Flex>

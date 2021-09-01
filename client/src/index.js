@@ -7,14 +7,17 @@ import { ChakraProvider } from "@chakra-ui/react";
 import {Provider} from 'react-redux';
 
 import store from './store';
+import { GameProvider } from './GameContext';
 
 
 ReactDOM.render(
+  <GameProvider>
   <Provider store={store}>
     <ChakraProvider>
       <App />
     </ChakraProvider>
-  </Provider>,
+  </Provider>
+  </GameProvider>,
   document.getElementById('root')
 );
 

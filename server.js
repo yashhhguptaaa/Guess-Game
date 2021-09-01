@@ -1,6 +1,7 @@
 const express = require("express");
 const db= require('./db');
 const wordRoute = require('./routes/wordRoute');
+const guessRoute = require('./routes/guessRoute') 
 
 const path = require('path')
 
@@ -8,6 +9,8 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/words',wordRoute);
+app.use('/api/guess',guessRoute);
+
 
 
 if(process.env.NODE_ENV === 'production'){

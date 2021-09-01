@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const wordSchema = mongoose.Schema({
     word : {type : String , require},
-    hints: []
+    image : {type : String , require},
 } ,{
     timestamps:true    ,
 });

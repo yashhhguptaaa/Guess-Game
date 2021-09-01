@@ -1,26 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const Word = require('../models/wordModel')
+const Guess = require('../models/guessModel')
 
-router.get('/getwords', async (req, res) => {
+router.get('/getguess', async (req, res) => {
     try {
-        console.log("inside get words route")
-        const words = await Word.find()
-        res.send(words)
+        // console.log("inside get words route")
+        const word = await Guess.aggregate([{$sample:{size:1}}])
+        res.send(word)
+        console.log(word)
     } catch (error) {
         return res.status(400).json({ message: error });
     }
 });
 
-router.post('/addword', async (req, res) => {
+router.post('/addguess', async (req, res) => {
 
     const guessword = req.body.guessword;
     console.log(guessword);
     try {
 
-        const newword = new Word({
+        const newword = new Guess({
             word: guessword.word,
-            image: guessword.image
         })
 
         await newword.save()
